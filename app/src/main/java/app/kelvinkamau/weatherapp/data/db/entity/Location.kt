@@ -1,4 +1,4 @@
-package app.kelvinkamau.weatherapp.data.response
+package app.kelvinkamau.weatherapp.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName
