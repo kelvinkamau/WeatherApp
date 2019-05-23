@@ -8,6 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import app.kelvinkamau.weatherapp.R
+import app.kelvinkamau.weatherapp.data.ApixuWeatherAPIService
+import kotlinx.android.synthetic.main.current_weather_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CurrentWeatherFragment : Fragment() {
 
@@ -27,6 +32,12 @@ class CurrentWeatherFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CurrentWeatherViewModel::class.java)
+
+        val apiService = ApixuWeatherAPIService()
+        GlobalScope.launch(Dispatchers.Main) {
+            val currentWeatherResponse = apiService.getCurrentWeather("Nairobi").await()
+            textView.text = currentWeatherResponse.toString()
+        }
         // TODO: Use the ViewModel
     }
 
