@@ -1,5 +1,7 @@
-package app.kelvinkamau.weatherapp.data.response
+package app.kelvinkamau.weatherapp.data.network.response
 
+import app.kelvinkamau.weatherapp.data.db.entity.CurrentWeatherEntry
+import app.kelvinkamau.weatherapp.data.db.entity.Location
 import com.google.gson.annotations.SerializedName
 
 
