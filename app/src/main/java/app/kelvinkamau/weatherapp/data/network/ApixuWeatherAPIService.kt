@@ -1,4 +1,4 @@
-package app.kelvinkamau.weatherapp.data
+package app.kelvinkamau.weatherapp.data.network
 
 import app.kelvinkamau.weatherapp.data.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -24,7 +24,9 @@ interface ApixuWeatherAPIService {
     ): Deferred<CurrentWeatherResponse>
 
     companion object {
-        operator fun invoke(): ApixuWeatherAPIService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): ApixuWeatherAPIService {
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .url()
@@ -42,6 +44,7 @@ interface ApixuWeatherAPIService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()
