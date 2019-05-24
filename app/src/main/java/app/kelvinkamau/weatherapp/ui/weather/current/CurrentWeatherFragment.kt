@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import app.kelvinkamau.weatherapp.R
 import app.kelvinkamau.weatherapp.data.network.ApixuWeatherAPIService
 import app.kelvinkamau.weatherapp.data.network.ConnectivityInterceptorImpl
-import app.kelvinkamau.weatherapp.data.network.WeatherNetworkDataSource
 import app.kelvinkamau.weatherapp.data.network.WeatherNetworkDataSourceImpl
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
