@@ -54,7 +54,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection, it.windSpeed)
             updateVisibility(it.visibilityDistance)
-            updateDividers()
+            //updateDividers()
 
             GlideApp.with(this@CurrentWeatherFragment)
                 .load("https:${it.conditionIconUrl}")
@@ -102,8 +102,8 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         textView_visibility.text = "Visibility\n$visibilityDistance $unitAbbreviation"
     }
 
-    private fun updateDividers(){
+   /* private fun updateDividers(){
         divide.visibility = View.VISIBLE
         divider.visibility = View.VISIBLE
-    }
+    }*/
 }
