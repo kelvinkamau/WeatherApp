@@ -2,7 +2,6 @@ package app.kelvinkamau.weatherapp.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceFragmentCompat
 import app.kelvinkamau.weatherapp.R
 
