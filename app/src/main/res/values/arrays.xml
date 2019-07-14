@@ -10,4 +10,16 @@
         <item>Imperial</item>
     </string-array>
 
+    <string-array name="themeValues">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+
+    <string-array name="themeEntries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+
 </resources>
