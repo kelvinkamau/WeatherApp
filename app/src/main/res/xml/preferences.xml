@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
             android:title="Weather location">
         <SwitchPreference
@@ -28,4 +29,15 @@
                 android:entryValues="@array/unitSystemValues"/>
     </PreferenceCategory>
 
+    <PreferenceCategory
+            android:title="Theme">
+        <ListPreference
+                app:key="theme"
+                android:defaultValue="Light"
+                android:summary="%s"
+                app:title="@string/title_theme_preference"
+                android:entries="@array/themeEntries"
+                app:entryValues="@array/themeValues"
+                app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
 </PreferenceScreen>
