@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import app.kelvinkamau.weatherapp.data.db.entity.CurrentWeatherEntry
-import java.security.AccessControlContext
 
 @Database(
     entities = [CurrentWeatherEntry::class],

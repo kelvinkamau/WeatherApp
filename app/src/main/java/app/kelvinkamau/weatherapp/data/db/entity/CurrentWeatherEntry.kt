@@ -1,6 +1,5 @@
 package app.kelvinkamau.weatherapp.data.db.entity
 
-
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -56,9 +55,11 @@ data class CurrentWeatherEntry(
     val windKph: Double,
 
     @SerializedName("wind_mph")
-    val windMph: Double
-)
-{
+    val windMph: Double,
+
+    @SerializedName("last_updated")
+    val lastUpdated: String
+) {
     @PrimaryKey(autoGenerate = false)
-    var id:Int = CURRENT_WEATHER_ID
+    var id: Int = CURRENT_WEATHER_ID
 }

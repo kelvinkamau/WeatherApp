@@ -3,4 +3,6 @@
     <string name="today">Today</string>
     <string name="week">7 Days</string>
     <string name="settings">Settings</string>
+    <string name="icon">icon</string>
+    <string name="loading">loading</string>
 </resources>
