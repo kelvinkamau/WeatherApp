@@ -49,7 +49,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection, it.windSpeed)
             updateVisibility(it.visibilityDistance)
-            updateTime()
+            //updateTime()
 
             GlideApp.with(this@CurrentWeatherFragment)
                 .load("https:${it.conditionIconUrl}")
@@ -83,20 +83,20 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun updatePrecipitation(precipitationVolume: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("mm", "in")
-        textView_precipitation.text = "Precipitation\n$precipitationVolume $unitAbbreviation"
+        textView_precipitation.text = "$precipitationVolume $unitAbbreviation"
     }
 
     private fun updateWind(windDirection: String, windSpeed: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("kph", "mph")
-        textView_wind.text = "Wind\n$windDirection, $windSpeed $unitAbbreviation"
+        textView_wind.text = "$windDirection, $windSpeed $unitAbbreviation"
     }
 
     private fun updateVisibility(visibilityDistance: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("km", "mi.")
-        textView_visibility.text = "Visibility\n$visibilityDistance $unitAbbreviation"
+        textView_visibility.text = "$visibilityDistance $unitAbbreviation"
     }
 
-    private fun updateTime() {
+    /*private fun updateTime() {
         textView_Time.text = "Updated time:"
-    }
+    }*/
 }
