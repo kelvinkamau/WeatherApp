@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+            android:title="Weather location">
+        <SwitchPreference
+                android:key="USE_DEVICE_LOCATION"
+                android:title="Use device location"
+                android:summary="Allow the app to get your location"
+                android:defaultValue="true"
+                android:disableDependentsState="false"/>
+
+        <EditTextPreference
+                android:key="CUSTOM_LOCATION"
+                android:title="Location"
+                android:summary="The location for which weather is displayed"
+                android:defaultValue="Nairobi"
+                android:dependency="USE_DEVICE_LOCATION"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Units">
+        <ListPreference
+                android:key="UNIT_SYSTEM"
+                android:title="Unit system"
+                android:summary="%s"
+                android:defaultValue="METRIC"
+                android:entries="@array/unitSystemEntries"
+                android:entryValues="@array/unitSystemValues"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Theme">
+        <ListPreference
+                app:key="theme"
+                android:defaultValue="Light"
+                android:summary="%s"
+                app:title="@string/title_theme_preference"
+                android:entries="@array/themeEntries"
+                app:entryValues="@array/themeValues"
+                app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

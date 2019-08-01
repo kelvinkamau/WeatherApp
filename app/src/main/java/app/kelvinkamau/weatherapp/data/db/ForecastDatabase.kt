@@ -5,13 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import app.kelvinkamau.weatherapp.data.db.entity.CurrentWeatherEntry
+import app.kelvinkamau.weatherapp.data.db.entity.WeatherLocation
 
 @Database(
-    entities = [CurrentWeatherEntry::class],
+    entities = [CurrentWeatherEntry::class, WeatherLocation::class],
     version = 1
 )
 abstract class ForecastDatabase : RoomDatabase() {
-    abstract fun CurrentWeatherDao(): CurrentWeatherDao
+    abstract fun currentWeatherDao(): CurrentWeatherDao
+    abstract fun weatherLocationDao(): WeatherLocationDao
 
     companion object {
         @Volatile

@@ -1,8 +1,13 @@
 package app.kelvinkamau.weatherapp
 
 import android.app.Application
+import androidx.preference.PreferenceManager
 import app.kelvinkamau.weatherapp.data.db.ForecastDatabase
 import app.kelvinkamau.weatherapp.data.network.*
+import app.kelvinkamau.weatherapp.data.provider.LocationProvider
+import app.kelvinkamau.weatherapp.data.provider.LocationProviderImpl
+import app.kelvinkamau.weatherapp.data.provider.UnitProvider
+import app.kelvinkamau.weatherapp.data.provider.UnitProviderImpl
 import app.kelvinkamau.weatherapp.data.repository.ForecastRepository
 import app.kelvinkamau.weatherapp.data.repository.ForecastRepositoryImpl
 import app.kelvinkamau.weatherapp.ui.weather.current.CurrentWeatherViewModelFactory
@@ -20,16 +25,27 @@ class ForecastApplication : Application(), KodeinAware {
         import(androidXModule(this@ForecastApplication))
 
         bind() from singleton { ForecastDatabase(instance()) }
-        bind() from singleton { instance<ForecastDatabase>().CurrentWeatherDao() }
+        bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
+        bind() from singleton { instance<ForecastDatabase>().weatherLocationDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { ApixuWeatherAPIService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
-        bind() from provider { CurrentWeatherViewModelFactory(instance()) }
+        bind<LocationProvider>() with singleton { LocationProviderImpl() }
+        bind<ForecastRepository>() with singleton {
+            ForecastRepositoryImpl(
+                instance(),
+                instance(),
+                instance(),
+                instance()
+            )
+        }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
 
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }

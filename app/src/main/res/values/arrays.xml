@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unitSystemValues">
+        <item>METRIC</item>
+        <item>IMPERIAL</item>
+    </string-array>
+
+    <string-array name="unitSystemEntries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+
+    <string-array name="themeValues">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+
+    <string-array name="themeEntries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+
+</resources>
