@@ -3,5 +3,11 @@
     <string name="today">Today</string>
     <string name="week">7 Days</string>
     <string name="settings">Settings</string>
-    <string name="title_theme_preference">Theme</string>
+    <string name="icon">icon</string>
+    <string name="loading">loading</string>
+    <string name="wind">Wind</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="visibility">Visibility</string>
+    <string name="updated_time">Last update</string>
+    <string name="time">12:33 PM</string>
 </resources>

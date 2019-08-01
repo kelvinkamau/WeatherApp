@@ -1,12 +1,12 @@
 package app.kelvinkamau.weatherapp.ui.weather.current
 
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import app.kelvinkamau.weatherapp.R
 import app.kelvinkamau.weatherapp.internal.glide.GlideApp
 import app.kelvinkamau.weatherapp.ui.base.ScopedFragment
@@ -19,9 +19,7 @@ import org.kodein.di.generic.instance
 class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     override val kodein by closestKodein()
-
     private val viewModelFactory: CurrentWeatherViewModelFactory by instance()
-
     private lateinit var viewModel: CurrentWeatherViewModel
 
     override fun onCreateView(
@@ -40,30 +38,22 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
-        val weatherLocation = viewModel.weatherLocation.await()
-
-        weatherLocation.observe(this@CurrentWeatherFragment, Observer { location ->
-            if (location == null) return@Observer
-            updateLocation(location.name)
-
-        })
-
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
+            updateLocation("Nairobi")
             updateDateToToday()
             updateTemperatures(it.temperature, it.feelsLikeTemperature)
             updateCondition(it.conditionText)
             updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection, it.windSpeed)
             updateVisibility(it.visibilityDistance)
-            //updateDividers()
+            //updateTime()
 
             GlideApp.with(this@CurrentWeatherFragment)
                 .load("https:${it.conditionIconUrl}")
                 .into(imageView_condition_icon)
-
         })
     }
 
@@ -93,21 +83,20 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun updatePrecipitation(precipitationVolume: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("mm", "in")
-        textView_precipitation.text = "Precipitation\n$precipitationVolume $unitAbbreviation"
+        textView_precipitation.text = "$precipitationVolume $unitAbbreviation"
     }
 
     private fun updateWind(windDirection: String, windSpeed: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("kph", "mph")
-        textView_wind.text = "Wind\n$windDirection, $windSpeed $unitAbbreviation"
+        textView_wind.text = "$windDirection, $windSpeed $unitAbbreviation"
     }
 
     private fun updateVisibility(visibilityDistance: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("km", "mi.")
-        textView_visibility.text = "Visibility\n$visibilityDistance $unitAbbreviation"
+        textView_visibility.text = "$visibilityDistance $unitAbbreviation"
     }
 
-    /* private fun updateDividers(){
-         divide.visibility = View.VISIBLE
-         divider.visibility = View.VISIBLE
-     }*/
+    /*private fun updateTime() {
+        textView_Time.text = "Updated time:"
+    }*/
 }
